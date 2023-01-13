@@ -11,10 +11,11 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <View>
-      <TextInput
+      <TextInput 
         placeholder="Enter search term"
         value={searchTerm}
         onChangeText={setSearchTerm}
+        
       />
       <Button
         title="Search"

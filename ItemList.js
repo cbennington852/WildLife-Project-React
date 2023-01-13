@@ -34,29 +34,30 @@ const Item = ({ title, onPress }) => (
 );
 
 const ItemList = ({ items, onSearch }) => {
-  const [filteredItems, setFilteredItems] = useState(items);
-  const navigation = useNavigation();
-
-  const handleSearch = (searchTerm) => {
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    const newFilteredItems = items.filter((item) => item.title.toLowerCase().includes(lowerCaseSearchTerm));
-    setFilteredItems(newFilteredItems);
+    const [filteredItems, setFilteredItems] = useState(items);
+    const navigation = useNavigation();
+  
+    const handleSearch = (searchTerm) => {
+      const lowerCaseSearchTerm = searchTerm.toLowerCase();
+      const newFilteredItems = items.filter((item) => item.title.toLowerCase().includes(lowerCaseSearchTerm));
+      setFilteredItems(newFilteredItems);
+    }
+  
+    const handleItemPress = (item) => {
+      navigation.navigate('ItemDetails', { item });
+    }
+  
+    return (
+      <View>
+        <SearchBar onSearch={handleSearch} />
+        <FlatList
+          data={filteredItems}
+          renderItem={({ item }) => <Item title={item.title} onPress={() => handleItemPress(item)} />}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    );
   }
-
-  const handleItemPress = (item) => {
-    navigation.navigate('ItemDetails', { item });
-  }
-
-  return (
-    <View>
-      <SearchBar onSearch={handleSearch} />
-      <FlatList
-        data={filteredItems}
-        renderItem={({ item }) => <Item title={item.title} onPress={() => handleItemPress(item)} />}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-  );
-}
+  
 
 export default ItemList;

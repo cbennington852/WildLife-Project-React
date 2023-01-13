@@ -1,40 +1,65 @@
 
-import { View, StyleSheet, Text, TextInput, Keyboard, Button, FlatList,TouchableOpacity   } from 'react-native';
+import { View, StyleSheet,Image, Text, TextInput, Keyboard, Button, FlatList,TouchableOpacity   } from 'react-native';
 import React, { useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import ItemList from './ItemList';
+import ItemDetails from './ItemDetails';
+import DataBase from './componets/DataBase';
+import HikeBrowse from './componets/HikeBrowse';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const App = () => {
   //list for directory
   const items = [
-    { id: '1', title: 'Item 1',ItemDetails: '' },
+    { id: '1', title: 'Item 1' },
     { id: '2', title: 'Item 2' },
     { id: '3', title: 'Item 3' },
-    { id: '4', title: 'Item 4' },
+    { id: '4', title: 'Item 4'},
   ];
 
   const Stack = createStackNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
-    
-    <View style = {styles.container}>
-      <View style = {styles.HeaderText}><Text style = {styles.HeaderText}>Animal Database Issaquah</Text></View>
-
-      <View style = {styles.searchResults}>
-
-      <ItemList items={items} />
-      return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="ItemList" component={ItemList} initialParams={{ items }} />
-        <Stack.Screen name="ItemDetails" component={ItemDetails} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen 
+                name="HikeBrowse" 
+                component={HikeBrowse} 
+                options={{
+                  title: "Hikes!",
+                  tabBarLabel: 'Hikes!',
+                  tabBarIcon: ({ color, size }) => (
+                    <Image  
+                    style={styles.tinyLogo}
+                    source={require('./assets/Hiker.png')}/>
+                    
+                  ),
+
+                }} 
+            />
+        <Tab.Screen 
+                name="DataBase" 
+                component={DataBase} 
+                
+                options={{
+                  title: "Animal lookup",
+                tabBarIcon: ({ color, size }) => (
+                  <Image  
+                  style={styles.tinyLogo}
+                  source={require('./assets/Animals.png')}/>
+                ),
+                tabBarColor:'beige'
+              
+              }} 
+            />
+      </Tab.Navigator>
     </NavigationContainer>
-  );
-      </View>
+  
+    
       
-    </View>
+    
   );
 }
 
@@ -49,6 +74,10 @@ const styles = StyleSheet.create({
   searchResults: {
     backgroundColor: '',
     flex: 1,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 35,
   },
   HeaderText: 
   {
