@@ -8,6 +8,8 @@ import ItemDetails from './ItemDetails';
 import DataBase from './componets/DataBase';
 import HikeBrowse from './componets/HikeBrowse';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ReviewDetails from './componets/ReviewDetails';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const App = () => {
   //list for directory
@@ -18,31 +20,10 @@ const App = () => {
     { id: '4', title: 'Item 4'},
   ];
 
-  const Stack = createStackNavigator();
-  const Tab = createBottomTabNavigator();
-
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen 
-                name="HikeBrowse" 
-                component={HikeBrowse} 
-                options={{
-                  title: "Hikes!",
-                  tabBarLabel: 'Hikes!',
-                  tabBarIcon: ({ color, size }) => (
-                    <Image  
-                    style={styles.tinyLogo}
-                    source={require('./assets/Hiker.png')}/>
-                    
-                  ),
-
-                }} 
-            />
-        <Tab.Screen 
-                name="DataBase" 
-                component={DataBase} 
-                
+ 
+  //const Tab = createBottomTabNavigator();
+  /*
+     
                 options={{
                   title: "Animal lookup",
                 tabBarIcon: ({ color, size }) => (
@@ -53,7 +34,20 @@ const App = () => {
                 tabBarColor:'beige'
               
               }} 
+  */
+  const Tab = createNativeStackNavigator();
+
+  return (
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName="HikeBrowse">
+        <Tab.Screen 
+                name="HikeBrowse" 
+                component={HikeBrowse} />
+        <Tab.Screen 
+                name="DataBase" 
+                component={DataBase} 
             />
+        <Tab.Screen name="ReviewDetails" component={ReviewDetails} />
       </Tab.Navigator>
     </NavigationContainer>
   

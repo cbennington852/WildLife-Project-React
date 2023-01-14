@@ -2,33 +2,28 @@ import React, { useState } from 'react';
 import { View,ScrollView, Text ,Image ,StyleSheet, TextInput, Keyboard, Button, FlatList,TouchableOpacity} from 'react-native';
 import Card from '../componets/Card';
 
-/*
-<Card
-                flex
-                borderless
-                style={styles.card}
-                title="Christopher Moon"
-                caption="139 minutes ago"
-                location="Los Angeles, CA"
-                image='../assets/forest.jpg'
-            />
-*/
+import ReviewDetails from './ReviewDetails';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
+const IMAGES = {
+  Test1: require('../assets/forest.jpg'),
+  Test2: require('../assets/Animals.png'),
+};
 const HikeBrowse = ({navigation, route}) => {
 
     const [reviews, setReviews] = useState([
-        { title: 'medow valley hike', length: 5, body: 'lorem ipsum', key: '1' },
-        { title: 'mushroom trail', length: 4, body: 'lorem ipsum', key: '2' },
-        { title: 'poo poo point trail', length: 3, body: 'lorem ipsum', key: '3' },
+        { title: 'medow valley hike', length: 5, body: 'lorem ipsum', key: '1',image:IMAGES.Test1 , description: 'SUCH A GOO DHIEK'},
+        { title: 'mushroom trail', length: 4, body: 'lorem ipsum', key: '2', image:IMAGES.Test1 , description: 'SUCH A GOO DHIEK'},
+        { title: 'poo poo point trail', length: 3, body: 'lorem ipsum', key: '3', image:IMAGES.Test2 , description: 'SUCH A GOO DHIEK'},
       ]);
 
-
+      //const Stack = createStackNavigator();
 
 
     return (
         <View style={globalStyles.container}>
-          <ScrollView style={[styles.cont, {flexDirection: "row"},{height: 55},{horizontal: true}]}>
-              
+          <ScrollView horizontal={true} style={[styles.cont, {flexDirection: "row"},{height: 55}]}>
               <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]}>
                 <Text>Family Freindly</Text>
               </TouchableOpacity>
@@ -44,7 +39,7 @@ const HikeBrowse = ({navigation, route}) => {
               <Card>
                 <Image  
                       style={styles.imageStyle}
-                      source={require('../assets/forest.jpg')}/>
+                      source={item.image}/>
                 <Text style={globalStyles.titleText}>{ item.title }</Text>
                 <Text>Miles: {item.length}</Text>
                 <Text style={globalStyles.paragraph}>{item.body}</Text>
