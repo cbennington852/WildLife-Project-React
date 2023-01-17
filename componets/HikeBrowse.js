@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 const IMAGES = {
   Test1: require('../assets/forest.jpg'),
-  Test2: require('../assets/Animals.png'),
+  Test2: require('../assets/new forest.jpg'),
 };
 const HikeBrowse = ({navigation, route}) => {
 
@@ -24,8 +24,8 @@ const HikeBrowse = ({navigation, route}) => {
     return (
         <View style={globalStyles.container}>
           <ScrollView horizontal={true} style={[styles.cont, {flexDirection: "row"},{height: 55}]}>
-              <TouchableOpacity style={[styles.button, {backgroundColor: 'green'}]}>
-                <Text>Family Freindly</Text>
+              <TouchableOpacity style={[styles.button,{backgroundColor: 'green'} ]}>
+                <Text>Family </Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.button, {backgroundColor: 'red'}]}>
                 <Text>Day hike</Text>
@@ -60,7 +60,6 @@ const HikeBrowse = ({navigation, route}) => {
       paddingHorizontal: 32,
       borderRadius: 2,
       elevation: 3,
-      backgroundColor: 'black',
       width:100,
     },
     text: {
@@ -73,6 +72,7 @@ const HikeBrowse = ({navigation, route}) => {
     tinyLogo: {
       width: 50,
       height: 50,
+
       },
       imageStyle: {
         height: 250,
